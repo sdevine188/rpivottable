@@ -11,9 +11,9 @@ library(readr)
 
 # data(HairEyeColor)
 # rpivotTable(data = HairEyeColor, rows = "Hair",cols="Eye", vals = "Freq", aggregatorName = "Sum", rendererName = "Table", width="100%", height="400px")
-# setwd("C:/Users/Stephen/Desktop/R/rpivottable")
-# data <- read_csv("shiny_small.csv")
-# shiny_small <- data %>% select(Appl.State.Abbr, Region.Name, EDA.Funding, FY, Local.Applicant.Match)
+setwd("C:/Users/Stephen/Desktop/R/rpivottable")
+data <- read_csv("shiny_small.csv")
+shiny_small <- data %>% select(Appl.State.Abbr, Region.Name, EDA.Funding, FY, Local.Applicant.Match)
 # rpivotTable(shiny_small)
 
 # pivot_string <- c("cols[[1]] = FY", "rows[[1]] = Region.Name", "rows[[2]] = Appl.State.Abbr", "vals[[1]] = EDA.Funding", "exclusions$Appl.State.Abbr = list(\"AK\", \"AL\", \"AR\")", "exclusions$FY = list(\"1995\")", 
@@ -338,11 +338,11 @@ server <- function(input, output) {
                                 unique_row_df
                         }
                         
-                        if(pivot_args$aggregatorName == "List Unique Values") {
-                                data %>% filter_(.dots = exclusions) %>% group_by_(.dots = var_groups) %>% 
-                                        summarize_(Sum = interp(~sum(vals, na.omit = TRUE), vals = as.name(vals))) %>% melt(id.vars = var_groups) %>% 
-                                        dcast(dcast_formula)
-                        }
+                        # if(pivot_args$aggregatorName == "List Unique Values") {
+                        #         data %>% filter_(.dots = exclusions) %>% group_by_(.dots = var_groups) %>% 
+                        #                 summarize_(Sum = interp(~sum(vals, na.omit = TRUE), vals = as.name(vals))) %>% melt(id.vars = var_groups) %>% 
+                        #                 dcast(dcast_formula)
+                        # }
 
                 }
                 
